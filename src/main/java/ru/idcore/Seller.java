@@ -26,7 +26,6 @@ public class Seller {
     public void sellAuto() {
         lock.lock();
         try {
-
             System.out.printf("Продавец начал обрабатывать запрос от %s на продажу автомашины...\n", Thread.currentThread().getName());
             while (autoShop.getAutos().size() == 0) {
                 System.out.printf("Ответ для - %s: Машин в продаже нет. Ожидайте!\n", Thread.currentThread().getName());
@@ -40,14 +39,12 @@ public class Seller {
         } finally {
             lock.unlock();
         }
-
     }
 
 
     public void receiveAuto() {
         lock.lock();
         try {
-
             System.out.println("Продавец начал приемку автомашины...");
             Thread.sleep(autoShop.getTimeReceive());
             if (autoShop.getAutos().offer(new Auto())) {
@@ -61,6 +58,5 @@ public class Seller {
         } finally {
             lock.unlock();
         }
-
     }
 }
